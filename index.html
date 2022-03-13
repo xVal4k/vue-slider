@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slider Vue</title>
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="root">
+		<div class="slider"  @mouseover="stopTimeInterval" @mouseleave="timeInterval">
+			<div class="slide">
+				<img :src="'img/' + images[arrayIndex].source" :alt="images[arrayIndex].name">
+				<div class="slide-contents">
+					<h2 class="slide-title">{{ images[arrayIndex].name }}</h2>
+					<p class="slide-text">{{ images[arrayIndex].text }}</p>
+				</div>
+			</div>
+
+			<div class="thumbs">
+				<div v-for="(element, index) in images" class="thumb" @click='arrayIndex = index' :class="arrayIndex==index ? 'thumb active' : ''">
+					<img :src="'img/' + element.source" :alt="element.name">
+				</div>	
+
+
+				<button @click="previous(arrayIndex, images)" class="btn-control btn-previus">&and;</button>
+				<button @click="next(arrayIndex, images)" class="btn-control btn-next">&or;</button>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
